@@ -4,6 +4,8 @@ import Navbar from './components/navbar/Navbar'
 import './App.css'
 import Home from './assets/pages/home/Home'
 import Teste from './assets/pages/teste/teste'
+import Cadastro from './assets/pages/cadastro/Cadastro'
+import Login from './assets/pages/login/Login'
 
 function App() {
   return (
@@ -12,8 +14,9 @@ function App() {
           <Navbar />
           <div className="min-h-[80vh]">
             <Routes>
-              {/* reppresenta o componente principal apenas / */}
-              <Route path="/" element={<Home />} />
+              {/* representa o componente principal apenas / */}
+              <Route path="/" element={<Login />} />
+              <Route path="/cadastro" element={<Cadastro />} />
 
               <Route path="/home" element={<Home />} />
               <Route path="/teste" element={<Teste />} />
