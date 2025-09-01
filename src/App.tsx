@@ -2,10 +2,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/footer/Footer'
 import Navbar from './components/navbar/Navbar'
 import './App.css'
-import Home from './assets/pages/home/Home'
-import Teste from './assets/pages/teste/teste'
-import Cadastro from './assets/pages/cadastro/Cadastro'
-import Login from './assets/pages/login/Login'
+import Cadastro from './pages/cadastro/Cadastro'
+import Login from './pages/login/Login'
+import Home from './pages/home/Home'
+import Teste from './pages/teste/teste'
+
 
 function App() {
   return (
