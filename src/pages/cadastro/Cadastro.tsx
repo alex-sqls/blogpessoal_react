@@ -126,7 +126,7 @@ function Cadastro() {
                         placeholder="confirmarSenha"
                         className="border-2 border-slate-700 rounded p-2"
                         value={confirmarSenha}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => handleConfirmarSenha(e)}
                     />
                 </div>
                 <div className="flex justify-around w-full gap-8">
