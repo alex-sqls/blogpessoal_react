@@ -10,7 +10,7 @@ const navigate = useNavigate();
 const {handleLogout} = useContext(AuthContext)
 
 function logout() {
-  
+
   handleLogout()
   alert('O usuario foi desconectado com sucesso!')
   navigate('/')
@@ -24,8 +24,8 @@ function logout() {
         <div className="flex gap-4">
            <Link to="/teste">teste</Link>
           <Link to="/postagens">Postagens</Link>
-          <Link to="/temas">Temas</Link>
-          <Link to="/cadastrarTema">Cadastrar tema</Link>
+          <Link to='/temas' className='hover:underline'>Temas</Link>
+          <Link to='/cadastrartema' className='hover:underline'>Cadastrar tema</Link>
           <Link to="/perfil">Perfil</Link>
           <Link to="" onClick={logout} className="hover:underline">Sair</Link>
         </div>
