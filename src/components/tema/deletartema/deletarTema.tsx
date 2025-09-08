@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import type Tema from "../../../models/Tema"
 import { buscar, deletar } from "../../../services/Service"
 import { ClipLoader } from "react-spinners"
+import { ToastAlert } from "../../../utils/ToastAlerta"
 
 function DeletarTema() {
 
@@ -33,7 +34,7 @@ function DeletarTema() {
 
     useEffect(() => {
         if(token === '') {
-            alert('voce precisa estar logado')
+            ToastAlert('voce precisa estar logado', 'info')
             navigate('/')
         }
     }, [token])
@@ -53,12 +54,12 @@ function DeletarTema() {
                 }
             })
 
-            alert('tema apagado com sucesso')
+            ToastAlert('tema apagado com sucesso', 'sucesso')
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
             } else {
-                alert('erro ao deletar o tema')
+                ToastAlert('erro ao deletar o tema', 'erro')
             }
         }
 

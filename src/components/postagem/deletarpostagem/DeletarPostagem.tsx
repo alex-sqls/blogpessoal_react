@@ -4,6 +4,7 @@ import type Postagem from "../../../models/Postagem"
 import { AuthContext } from "../../../contexts/AuthContext"
 import { buscar, deletar } from "../../../services/Service"
 import { ClipLoader } from "react-spinners"
+import { ToastAlert } from "../../../utils/ToastAlerta"
 
 function DeletarPostagem() {
 
@@ -55,13 +56,13 @@ function DeletarPostagem() {
                 }
             })
 
-            alert('Postagem apagada com sucesso')
+            ToastAlert('Postagem apagada com sucesso', 'sucesso')
 
         } catch (error: any) {
             if (error.toString().includes('401')) {
                 handleLogout()
             }else {
-                alert('Erro ao deletar a postagem.')
+                ToastAlert('Erro ao deletar a postagem.', 'erro')
             }
         }
 

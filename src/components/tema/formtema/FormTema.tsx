@@ -4,6 +4,7 @@ import { useContext, useEffect, useState, type ChangeEvent, type FormEvent } fro
 import { AuthContext } from "../../../contexts/AuthContext";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { ClipLoader } from "react-spinners";
+import { ToastAlert } from "../../../utils/ToastAlerta";
 
 function FormTema() {
 
@@ -76,12 +77,12 @@ function FormTema() {
                 await cadastrar(`/temas`, tema, setTema, {
                     headers: { 'Authorization': token }
                 })
-                alert('o tema foi cadastrado com sucesso')
+                ToastAlert('o tema foi cadastrado com sucesso', 'sucesso')
             } catch(error: any) {
                 if(error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('erro ao cadastrar o tema')
+                    ToastAlert('erro ao cadastrar o tema', 'erro')
                 }
             }
         }

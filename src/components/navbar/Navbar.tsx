@@ -1,36 +1,51 @@
-import { useContext } from "react";
+import { useContext, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { ToastAlert } from "../../utils/ToastAlerta";
 
 
 
 function Navbar() {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
-const {handleLogout} = useContext(AuthContext)
+  const { usuario, handleLogout } = useContext(AuthContext)
 
-function logout() {
+  function logout() {
 
-  handleLogout()
-  alert('O usuario foi desconectado com sucesso!')
-  navigate('/')
-}
-  return (
-    <div className="w-full bg-indigo-900 text-white flex justify-center py-4">
-      <div className="container flex justify-between text-lg">
-        <Link to="/home" className="text-2xl font-bold">
-          Blog Pessoal
-        </Link>
-        <div className="flex gap-4">
-              
-          <Link to='/postagens' className='hover:underline'>Postagens</Link>
-          <Link to='/temas' className='hover:underline'>Temas</Link>
-          <Link to='/cadastrartema' className='hover:underline'>Cadastrar tema</Link>
-          <Link to="/perfil">Perfil</Link>
-          <Link to="" onClick={logout} className="hover:underline">Sair</Link>
+    handleLogout()
+    ToastAlert('O Usuário foi desconectado com sucesso!', 'info')
+    navigate('/')
+  }
+
+  //utilizada para representar qualquer elemento que possa ser renderizado na tela
+  //com isso a navbar ficara "escondida" ate o usuario fazer o login
+  let component: ReactNode
+
+  if (usuario.token !== "") {
+
+    component = (
+      <div className="w-full bg-indigo-900 text-white flex justify-center py-4">
+        <div className="container flex justify-between text-lg">
+          <Link to="/home" className="text-2xl font-bold">
+            Blog Pessoal
+          </Link>
+          <div className="flex gap-4">
+
+            <Link to='/postagens' className='hover:underline'>Postagens</Link>
+            <Link to='/temas' className='hover:underline'>Temas</Link>
+            <Link to='/cadastrartema' className='hover:underline'>Cadastrar tema</Link>
+            <Link to='/perfil' className='hover:underline'>Perfil</Link>
+            <Link to="" onClick={logout} className="hover:underline">Sair</Link>
+          </div>
         </div>
       </div>
-    </div>
+    )
+  }
+
+  return (
+    <>
+      {component}
+    </>
   );
 }
 

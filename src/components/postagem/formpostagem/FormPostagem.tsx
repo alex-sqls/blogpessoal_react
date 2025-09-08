@@ -5,6 +5,7 @@ import type Tema from "../../../models/Tema"
 import { atualizar, buscar, cadastrar } from "../../../services/Service"
 import type Postagem from "../../../models/Postagem"
 import { ClipLoader } from "react-spinners"
+import { ToastAlert } from "../../../utils/ToastAlerta"
 
 function FormPostagem() {
 
@@ -112,12 +113,12 @@ function FormPostagem() {
                 await atualizar(`/postagens`, postagem, setPostagem, {
                     headers: { Authorization: token}
                 })
-                alert('postagem foi atualizado com sucesso!')
+                ToastAlert('postagem foi atualizado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if(error.toString().includes('401')) {
                     handleLogout()
                 } else {
-                    alert('erro ao atualizar postagem')
+                    ToastAlert('erro ao atualizar postagem', 'erro')
                 }
             }
         } else {
@@ -125,12 +126,12 @@ function FormPostagem() {
                 await cadastrar(`/postagens`, postagem, setPostagem, {
                     headers: { Authorization: token}
                 })
-                alert('postagem foi cadastrado com sucesso!')
+                ToastAlert('postagem foi cadastrado com sucesso!', 'sucesso')
             } catch (error: any) {
                 if(error.toString().includes('401')) {
                     handleLogout();
                 } else {
-                    alert('erro ao cadastrar postagem')
+                    ToastAlert('erro ao cadastrar postagem', 'erro')
                 }
             }
         }
